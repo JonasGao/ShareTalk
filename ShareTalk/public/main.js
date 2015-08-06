@@ -5,11 +5,12 @@
 require.config({
     baseUrl: "app",
 
-    '*': {
-        'css': '/dep/javascripts/require/css'
-    },
-
     packages: [
+        {
+            name: 'css',
+            location: '/dep/javascripts/require',
+            main: 'css'
+        },
         {
             name: 'cs',
             location: '/dep/javascripts/require',
@@ -35,6 +36,10 @@ require.config({
     }
 });
 
-require(["cs!app"], function () {
+require([
+    "cs!app",
+    "css!/dep/stylesheets/bootstrap.min",
+    "css!/dep/stylesheets/bootstrap-theme.min"
+], function () {
     angular.bootstrap(document, ["ShareTalk"]);
 });

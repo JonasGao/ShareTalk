@@ -6,11 +6,9 @@
 define [
   "angular"
   "angular-route"
+  "cs!views/chat"
 ], (angular) ->
-  angular.module "ShareTalk", ["ngRoute"]
+  angular.module "ShareTalk", ["ngRoute", "ShareTalk.Chat"]
   .config ($routeProvider) ->
-    $routeProvider.when "/",
-      templateUrl: "app/index/index.tpl.html"
-      controller: "indexController"
-  .controller "indexController", ($scope) ->
-    $scope.title = "Hello world! "
+    $routeProvider.otherwise
+      template: '<a href="#/chat">go to chat</a>'
