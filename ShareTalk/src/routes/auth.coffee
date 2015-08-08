@@ -2,10 +2,14 @@
   全局授权拦截器
 ###
 
-User = require './modules/User'
+User = require '../modules/User'
+
+contain = (str, partStr) ->
+  str.indexOf partStr > -1
 
 canSkip = (req) ->
-  req.method is 'GET' or req.url.indexOf 'doLogin'
+  req.url.indexOf 'log' or
+  req.url.indexOf 'doLogin'
 
 authFilter = (req, res, next) ->
   if canSkip req
