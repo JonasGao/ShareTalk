@@ -5,6 +5,7 @@
 define [
   "angular"
   "angular-route"
+  "angular-resource"
   "angular-ui"
   "angular-ui-grid"
   "cs!views/chat/chat"
@@ -16,6 +17,7 @@ define [
 
   angular.module "shareTalk", [
     "ngRoute"
+    "ngResource"
     "ui.bootstrap"
     "ui.grid"
     "shareTalk.chat"

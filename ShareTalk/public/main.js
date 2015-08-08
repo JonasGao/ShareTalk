@@ -28,7 +28,8 @@ require.config({
         "angular": "/dep/javascripts/angular/angular",
         "angular-route": "/dep/javascripts/angular/angular-route",
         "angular-ui": "/dep/javascripts/angular-ui/ui-bootstrap-tpls-0.13.2",
-        "angular-ui-grid": "/dep/javascripts/angular-ui/ui-grid-3.0.1.min"
+        "angular-ui-grid": "/dep/javascripts/angular-ui/ui-grid-3.0.1.min",
+        "angular-resource": "/dep/javascripts/angular/angular-resource"
     },
 
     shim: {
@@ -36,6 +37,7 @@ require.config({
         "angular": {exports: "angular", deps: ["jquery"]},
         "angular-route": {exports: "angular-route", deps: ["angular"]},
         "angular-ui": {deps:["angular"]},
+        "angular-resource": {deps:["angular"]},
         "angular-ui-grid": {deps:["angular", "css!/dep/stylesheets/ui-grid-3.0.1.min"]}
     }
 });
