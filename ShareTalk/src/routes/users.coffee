@@ -6,7 +6,10 @@
 router = require 'express'
   .Router()
 
-router.post '/', (req, res) ->
-  res.send 'respond with a resource'
+router.get '/login', (req, res) ->
+  res.render 'login'
+
+router.post '/doLogin', (req, res) ->
+  res.json username:'temp user'
 
 module.exports = router

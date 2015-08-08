@@ -4,13 +4,23 @@
 
 User = require './modules/User'
 
+canSkip = (req) ->
+  req.method is 'GET' or req.url.indexOf 'doLogin'
+
 authFilter = (req, res, next) ->
+  if canSkip req
+# 如果是 GET 或登陆请求 则不需要验证，
+    console.log '已跳过登录验证: ' + req.url
+    next()
 
-  console.log req
+  else if req.session.user
+# 否则，都需要进行 Session 验证
+    console.log "通过验证: #{req.url}: #{req.session.user.username}"
+    next()
 
-  User.auth("a", "b")
+  else
+# 否则跳转到登陆页面
+    res.redirect '/login'
 
-  # 通过
-  # next()
 
 module.exports = authFilter;

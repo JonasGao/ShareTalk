@@ -7,9 +7,9 @@ userSchema = new Schema
   username: String
 
 userSchema.statics =
-  auth: (mail, password) ->
+  findByMail: (mail, callback) ->
     console.log 'test:User.auth:{mail}{password}'
-
+    callback false
 
 User = mongoose.model "User", userSchema
 
