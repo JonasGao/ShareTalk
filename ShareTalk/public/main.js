@@ -26,13 +26,15 @@ require.config({
     paths: {
         "jquery": "/dep/javascripts/jquery/jquery",
         "angular": "/dep/javascripts/angular/angular",
-        "angular-route": "/dep/javascripts/angular/angular-route"
+        "angular-route": "/dep/javascripts/angular/angular-route",
+        "angular-ui": "/dep/javascripts/angular-ui/ui-bootstrap-tpls-0.13.2"
     },
 
     shim: {
         "jquery": {exports: "$"},
         "angular": {exports: "angular", deps: ["jquery"]},
-        "angular-route": {exports: "angular-route", deps: ["angular"]}
+        "angular-route": {exports: "angular-route", deps: ["angular"]},
+        "angular-ui": {deps:["angular"]}
     }
 });
 
@@ -41,5 +43,5 @@ require([
     "css!/dep/stylesheets/bootstrap.min",
     "css!/dep/stylesheets/bootstrap-theme.min"
 ], function () {
-    angular.bootstrap(document, ["ShareTalk"]);
+    angular.bootstrap(document, ["shareTalk"]);
 });

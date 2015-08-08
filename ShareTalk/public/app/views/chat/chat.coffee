@@ -1,9 +1,9 @@
 define ["angular", "angular-route"], (angular) ->
-  angular.module "ShareTalk.Chat", ["ngRoute"]
+  angular.module "shareTalk.chat", ["ngRoute"]
 
   .config ($routeProvider) ->
     $routeProvider.when "/chat",
-      templateUrl: "app/views/chat.html"
+      templateUrl: "app/views/chat/chat.html"
       controller: "chatController"
       controllerAs: "model"
 
