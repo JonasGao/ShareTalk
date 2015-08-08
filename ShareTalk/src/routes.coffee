@@ -1,12 +1,12 @@
 ###
-  µÚÒ»²ãÂ·ÓÉÅäÖÃ
+  ç¬¬ä¸€å±‚è·¯ç”±é…ç½®
 ###
 
 express = require 'express'
 router = express.Router()
 
-index = require('./routes/index.coffee');
-users = require('./routes/users.coffee');
+index = require('./routes/index');
+users = require('./routes/users');
 
 router.use('/', index);
 router.use('/users', users);

@@ -1,8 +1,8 @@
 ###
-  È«¾ÖÊÚÈ¨À¹½ØÆ÷
+  å…¨å±€æŽˆæƒæ‹¦æˆªå™¨
 ###
 
-User = require './modules/User.coffee'
+User = require './modules/User'
 
 authFilter = (req, res, next) ->
 
@@ -10,7 +10,7 @@ authFilter = (req, res, next) ->
 
   User.auth("a", "b")
 
-  # Í¨¹ý
+  # é€šè¿‡
   # next()
 
 module.exports = authFilter;

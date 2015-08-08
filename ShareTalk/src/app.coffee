@@ -9,8 +9,8 @@ bodyParser = require('body-parser');
 mongoose = require('mongoose');
 session = require('express-session');
 
-router = require('./routes.coffee');
-authFilter = require('./auth.coffee');
+router = require('./routes');
+authFilter = require('./auth');
 
 app = express();
 
