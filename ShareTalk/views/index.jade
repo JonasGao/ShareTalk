@@ -1,19 +1,6 @@
 extends layout
 
-block head
-    script(src='dep/javascripts/jquery/jquery.min.js')
-
 block content
-    textarea#a
-    button#b send
-    script.
-        $(function() {
-            $('#b').click(function() {
-                $.post("users", eval("{"+$("#a").val()+"}"), function() {
-
-                });
-            });
-        });
-    //div(ng-view)
-    //script(data-main='main', src='dep/javascripts/require/require.js')
+    div(ng-view)
+    script(data-main='main', src='dep/javascripts/require/require.js')
 
