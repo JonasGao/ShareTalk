@@ -8,7 +8,6 @@ mongoose = require('mongoose');
 session = require('express-session');
 
 router = require('./routes');
-authFilter = require('./routes/auth');
 
 app = express();
 
@@ -29,7 +28,6 @@ app.use(session({
     secret: "share-talk-secret"
 }));
 
-app.use(authFilter);
 app.use(router);
 
 # catch 404 and forward to error handler
