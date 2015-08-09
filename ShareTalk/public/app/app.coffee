@@ -8,8 +8,8 @@ define [
   "angular-resource"
   "angular-ui"
   "angular-ui-grid"
-  "cs!views/chat/chat"
-  "cs!views/user/user"
+  "views/chat/chat"
+  "views/user/user"
 ], (angular) ->
   class menuController
     constructor: ->

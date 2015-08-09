@@ -21,10 +21,12 @@ define [
 
   .controller 'userListController', class
     constructor: ($users) ->
-      @users = []
-      $users.get (users) =>
-        @users = users
-
+      @userGrid =
+        enableSorting: false
+        columnDefs: [{field: 'mail'}, {field: 'username'}]
+        data: []
+      $users.query (arr) =>
+        @userGrid.data = arr
 
   .factory '$users', ($resource) ->
     $resource '/users'

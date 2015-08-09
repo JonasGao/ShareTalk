@@ -10,7 +10,8 @@ authFilter = require('./routes/auth');
 users = require('./routes/users');
 
 
-router.use(authFilter);
+# 开发时暂时取消验证
+# router.use(authFilter);
 router.use('/', index);
 router.use('/users', users);
 

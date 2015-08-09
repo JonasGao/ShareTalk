@@ -1,6 +1,6 @@
 define [
   "angular"
-  "cs!views/user/user.list"
+  "views/user/user.list"
 ], (angular) ->
   angular.module "shareTalk.user", [
     "ngRoute"
