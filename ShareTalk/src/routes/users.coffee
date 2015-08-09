@@ -9,6 +9,7 @@ router = require 'express'
   .Router()
 
 router.get '/', (req, res) ->
-  res.json User.find()
+  User.find (users) ->
+    res.json users || []
 
 module.exports = router

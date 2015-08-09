@@ -8,8 +8,8 @@ contain = (str, partStr) ->
   str.indexOf partStr > -1
 
 canSkip = (req) ->
-  req.url.indexOf 'log' or
-  req.url.indexOf 'doLogin'
+  req.url.indexOf('login') >= 0 or req.url.indexOf('doLogin') >= 0
+
 
 authFilter = (req, res, next) ->
   if canSkip req
