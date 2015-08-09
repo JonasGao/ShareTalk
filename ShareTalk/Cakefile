@@ -12,4 +12,4 @@ task 'server-build', 'Build lib/ from src/', ->
   build ['-c', '-m', '-o', 'lib', 'src']
 
 task 'client-build', 'Build lib/ from src/', ->
-  build ['-w', '-c', '-m', '-o', 'public/app', 'public/app']
+  build ['-w', '-c', '-m', '-o', 'public', 'public']
