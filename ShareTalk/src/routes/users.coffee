@@ -3,13 +3,12 @@
   对 user 进行的数据操作和访问
 ###
 
+User = require '../modules/User'
+
 router = require 'express'
   .Router()
 
-router.get '/login', (req, res) ->
-  res.render 'login'
-
-router.post '/doLogin', (req, res) ->
-  res.json username:'temp user'
+router.get '/', (req, res) ->
+  res.json User.find()
 
 module.exports = router
