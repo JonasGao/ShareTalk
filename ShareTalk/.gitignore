@@ -1,4 +1,4 @@
 dist
 lib
-public/app/*.js
-public/app/*.js.map
+public/app/**/*.js
+public/app/**/*.js.map
