@@ -1,1 +1,24 @@
+<div class="btn-group">
+    <button class="btn btn-primary" ng-click="model.openAddUser()">新增用户</button>
+</div>
 <div ui-grid="model.userGrid"></div>
+
+<script type="text/ng-template" id="addUser.tpl.html">
+    <div class="modal-header">
+        <h3 class="modal-title">New user!</h3>
+    </div>
+    <div class="modal-body">
+        <input id="add-user-mail" type="text" placeholder="作为登录名的邮箱：xxx@mail.com" class="form-control"
+                ng-model="user.mail"/>
+        <br/>
+        <input id="add-user-name" type="text" placeholder="随意的，亲切的昵称" class="form-control"
+                ng-model="user.username"/>
+        <br/>
+        <input id="add-user-password" type="password" placeholder="请不要忘记的密码" class="form-control"
+                ng-model="user.password"/>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

@@ -58,7 +58,7 @@ router.post '/', (req, res) ->
   checkUser doc
   .then (msg) ->
     if msg
-      res.json msg
+      res.json msg:msg
       return
     newUser = new User(doc)
     newUser.save (err, doc) ->
