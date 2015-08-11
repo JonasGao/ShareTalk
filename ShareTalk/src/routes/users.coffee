@@ -11,7 +11,6 @@ router = require 'express'
 
 mailReg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
 
-
 checkUser = (user) ->
   deferred = Q.defer()
   msg = ""
@@ -66,15 +65,24 @@ router.post '/', (req, res) ->
 
 
 # delete
-router.delete '/', (req, res) ->
-  User.remove (err) ->
+router.delete '/:id', (req, res) ->
+  if !req.params.id
+    return
+  User.remove id: req.params.id, (err) ->
     res.json err
 
 
 # update
 router.put '/', (req, res) ->
-  User.findById '??', (err, doc) ->
-    if doc
+  user = req.body;
+  if !user or !user.id
+    res.json null
+    return
+  User.find id: user.id, (err, docs) ->
+    if docs.length
+      doc = docs[0]
+      if user.mail then doc.mail = user.mail
+      if user.username then doc.username = user.username
       doc.save (err, doc) -> res.json doc
     else
       res.json err || 'Not found user'

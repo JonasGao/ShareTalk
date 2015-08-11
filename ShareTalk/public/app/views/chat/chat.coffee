@@ -1,6 +1,5 @@
-define ["angular", "angular-route"], (angular) ->
+define ["angular", "angular-route", 'views/user/user'], (angular) ->
   angular.module "shareTalk.chat", ["ngRoute"]
-
   .config ($routeProvider) ->
     $routeProvider.when "/chat",
       templateUrl: "app/views/chat/chat.html"
@@ -8,7 +7,8 @@ define ["angular", "angular-route"], (angular) ->
       controllerAs: "model"
 
   .controller "chatController", class
-    constructor: ->
+    constructor: ($user) ->
+      @$user = $user
       @content = ""
       @messages = []
 

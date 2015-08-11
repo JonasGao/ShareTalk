@@ -4,5 +4,6 @@ define [
 ], (angular) ->
   angular.module "shareTalk.user", [
     "ngRoute"
-    "shareTalk.user.list"
-  ]
+    "shareTalk.user.list"]
+  .factory '$users', ($resource) ->
+    $resource '/users'

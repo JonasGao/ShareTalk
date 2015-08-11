@@ -49,7 +49,4 @@ define [
     addUser: (user)->
       @$users.save user, () =>
         @userGrid.data.unshift user
-
-  .factory '$users', ($resource) ->
-    $resource '/users'
     
