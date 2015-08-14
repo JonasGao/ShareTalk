@@ -9,19 +9,19 @@ define [
   "angular-ui"
   "angular-ui-grid"
   "views/chat/chat"
-  "views/user/user"
+  "views/user/user.list"
 ], (angular) ->
   class menuController
     constructor: ->
-# do nothing
+      # do nothing
 
   angular.module "shareTalk", [
     "ngRoute"
     "ngResource"
     "ui.bootstrap"
     "ui.grid"
-    "shareTalk.chat"
-    "shareTalk.user"
+    "shareTalk.views.user.list"
+    "shareTalk.views.chat"
   ]
 
   .controller 'menuController', menuController

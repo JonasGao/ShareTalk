@@ -7,10 +7,11 @@ define [
   'angular'
   'angular-route'
   'angular-resource'
+  'services/user'
 ], (angular) ->
-  angular.module 'shareTalk.user.list', [
+  angular.module 'shareTalk.views.user.list', [
     'ngRoute'
-    'ngResource'
+    'shareTalk.services.user'
   ]
 
   .config ($routeProvider) ->
