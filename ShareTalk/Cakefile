@@ -9,7 +9,7 @@ build = (options)->
     print data.toString()
 
 task 'server-build', 'Build lib/ from src/', ->
-  build ['-c', '-m', '-o', 'lib', 'src']
+  build ['-c', '-o', 'lib', 'src']
 
 task 'client-build', 'Build lib/ from src/', ->
   build ['-w', '-c', 'public']

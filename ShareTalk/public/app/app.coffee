@@ -4,23 +4,15 @@
 
 define [
   "angular"
-  "angular-route"
-  "angular-resource"
-  "angular-ui"
-  "angular-ui-grid"
   "views/chat/chat"
-  "views/user/user.list"
+  "views/user/user.module"
 ], (angular) ->
   class menuController
     constructor: ->
       # do nothing
 
   angular.module "shareTalk", [
-    "ngRoute"
-    "ngResource"
-    "ui.bootstrap"
-    "ui.grid"
-    "shareTalk.views.user.list"
+    "shareTalk.views.user"
     "shareTalk.views.chat"
   ]
 

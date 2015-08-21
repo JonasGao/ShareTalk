@@ -4,27 +4,33 @@
 
 User = require '../modules/User'
 
-contain = (str, partStr) ->
-  str.indexOf partStr > -1
+# 定义那些需要跳过
+skipUrls = [
+  '/'
+  '/login'
+  '/index'
+]
 
+# 判断当前路径是否可以跳过
 canSkip = (req) ->
-  req.url.indexOf('login') >= 0 or req.url.indexOf('doLogin') >= 0
+  return true for i in skipUrls when i is req.url
 
-
-authFilter = (req, res, next) ->
+# 授权验证的过滤器
+filter = (req, res, next) ->
   if canSkip req
-# 如果是 GET 或登陆请求 则不需要验证，
-    console.log '已跳过登录验证: ' + req.url
+    # 如果是 GET 或登陆请求 则不需要验证，
+    console.log '已跳过: ' + req.url
     next()
 
   else if req.session.user
-# 否则，都需要进行 Session 验证
-    console.log "通过验证: #{req.url}: #{req.session.user.username}"
+    # 否则，都需要进行 Session 验证
+    console.log "通过验证: #{req.session.user.username}@#{req.url}"
     next()
 
   else
-# 否则跳转到登陆页面
-    res.redirect '/login'
+    # 否则跳转到登陆页面
+    console.log '未授权请求'
+    res.redirect '/#/login'
 
 
-module.exports = authFilter;
+module.exports = filter;

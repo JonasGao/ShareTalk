@@ -6,7 +6,6 @@
 define [
   'angular'
   'angular-route'
-  'angular-resource'
   'services/user'
 ], (angular) ->
   angular.module 'shareTalk.views.user.list', [
