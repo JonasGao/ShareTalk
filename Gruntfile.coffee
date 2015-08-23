@@ -6,7 +6,7 @@ module.exports = (grunt) ->
       client:
         files: [
           expand: true
-          src: ['public/app/*.js']
+          src: ['dest/client/app/*.js', 'dest/client/app/**/*.js']
         ]
     coffee:
       client:
@@ -26,11 +26,18 @@ module.exports = (grunt) ->
           ext: '.js'
         ]
     copy:
-      client:
+      'client-html':
         files: [
           expand: true
           cwd: 'src/'
-          src: ['client/**/*.html', 'client/dep/**/*.*']
+          src: ['client/**/*.html']
+          dest: 'dest'
+        ]
+      'client-dep':
+        files: [
+          expand: true
+          cwd: 'src/'
+          src: ['client/dep/**/*.*']
           dest: 'dest'
         ]
       server:
@@ -40,7 +47,24 @@ module.exports = (grunt) ->
           src: ['server/**/*.jade', 'server/bin/www']
           dest: 'dest'
         ]
+    watch:
+      'coffee-client':
+        files: ['src/client/*.coffee', 'src/client/**/*.coffee']
+        tasks: ['coffee:client', 'ngAnnotate']
+      'coffee-server':
+        files: ['src/server/*.coffee', 'src/server/**/*.coffee']
+        tasks: ['coffee:server']
+      'client-html':
+        files: ['src/client/**/*.html'],
+        tasks: ['copy:client-html']
+      options:
+        debounceDelay: 250
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-ng-annotate'
-  grunt.registerTask 'default', ['coffee:server', 'copy:server', 'coffee:client', 'copy:client']
+  grunt.registerTask 'default', [
+    'coffee'
+    'ngAnnotate'
+    'copy'
+  ]
