@@ -1,5 +1,3 @@
-dist
-lib
-public/**/*.js
-public/**/*.js.map
-!public/dep/**/*.js
+dest/
+node_modules/
+data/
