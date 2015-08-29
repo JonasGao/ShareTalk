@@ -30,7 +30,7 @@ filter = (req, res, next) ->
   else
     # 否则跳转到登陆页面
     console.log '未授权请求'
-    res.redirect '/#/login'
+    res.json redirect:'/login'
 
 
 module.exports = filter;

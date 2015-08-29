@@ -7,16 +7,25 @@ define [
   "views/chat/chat"
   "views/user/user.module"
 ], (angular) ->
-  class menuController
-    constructor: ->
-      # do nothing
+  class MenuController
+
+  class Redirect
+    constructor: (@$location)->
+    response: (res)=>
+      if res.data.redirect
+        @$location.path res.data.redirect
+      res
 
   angular.module "shareTalk", [
     "shareTalk.views.user"
     "shareTalk.views.chat"
   ]
 
-  .controller 'menuController', menuController
+  .controller 'menuController', MenuController
+  .service '$redirect', Redirect
+
   .config ($routeProvider) ->
     $routeProvider.otherwise
       template: '<div class="container-fluid">other wise</div>'
+  .config ($httpProvider) ->
+    $httpProvider.interceptors.push '$redirect'
