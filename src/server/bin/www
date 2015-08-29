@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 
-var app = require('../lib/app');
-var socket = require('../lib/socket');
+var app = require('../app');
+var socket = require('../socket');
 var debug = require('debug')('ShareTalk:server');
 var http = require('http');
 

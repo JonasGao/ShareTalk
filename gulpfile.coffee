@@ -10,7 +10,7 @@ dest = 'dest/'
 gulp.task 'coffee-server', () ->
   files = 'src/server/**/*.coffee'
   gulp.src files, { base: base }
-  .pipe watch(files)
+  .pipe watch(files, { base: base })
   .pipe coffee({bare: true}).on('error', gutil.log)
   .pipe gulp.dest(dest)
 
@@ -20,7 +20,7 @@ gulp.task 'coffee-client', () ->
     'src/client/app/**/*.coffee'
   ]
   gulp.src files, { base: base }
-  .pipe watch(files)
+  .pipe watch(files, { base: base } )
   .pipe coffee({bare: true}).on('error', gutil.log)
   .pipe ngAnnotate()
   .pipe gulp.dest(dest)
