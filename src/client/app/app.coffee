@@ -7,22 +7,19 @@ define [
   "views/chat/chat"
   "views/user/user.module"
 ], (angular) ->
-  class MenuController
-
-  class Redirect
-    constructor: (@$location)->
-    response: (res)=>
-      if res.data.redirect
-        @$location.path res.data.redirect
-      res
-
   angular.module "shareTalk", [
     "shareTalk.views.user"
     "shareTalk.views.chat"
   ]
 
-  .controller 'menuController', MenuController
-  .service '$redirect', Redirect
+  .controller 'menuController', (->)
+  .factory '$redirect', ($location, $q) ->
+    response: (res)->
+      if res.data.redirect
+        return $q (a, b)->
+          $location.path res.data.redirect
+          b()
+      res
 
   .config ($routeProvider) ->
     $routeProvider.otherwise

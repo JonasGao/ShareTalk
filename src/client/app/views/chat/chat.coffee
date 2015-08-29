@@ -1,25 +1,30 @@
-define ["angular", 'socket.io', "angular-route", 'services/user'], (angular, io) ->
-  angular.module "shareTalk.views.chat", ["ngRoute", 'shareTalk.services.user']
-  .config ($routeProvider) ->
-    $routeProvider.when "/chat",
-      templateUrl: "app/views/chat/chat.tpl.html"
-      controller: "chatController"
-      controllerAs: "model"
+###
+  chat 聊天画面的控制器
+###
 
-  .controller "chatController", class
-    constructor: ($users) ->
-      @$user = $users
-      @content = ""
+define [
+  'angular'
+  'angular-route'
+  'services/user'
+  'services/socket/chat'
+], (angular) ->
+  angular.module 'shareTalk.views.chat', [
+    'ngRoute'
+    'shareTalk.services.user'
+    'shareTalk.services.socket.chat'
+  ]
+  .config ($routeProvider) ->
+    $routeProvider.when '/chat',
+      templateUrl: 'app/views/chat/chat.tpl.html'
+      controller: 'chatController'
+      controllerAs: 'model'
+
+  .controller 'chatController', class
+    constructor: (@$users, @$chat) ->
+      @content = ''
       @messages = []
 
     connect: ->
-      @socket = io();
-      @socket.on 'posted', (data) -> alert(data.message)
 
     send: ->
-      @socket.emit 'post', @content
-
-      @messages.unshift
-        sender: "user 1"
-        content: @content
-      @content = ""
+      @$chat.send 'aaaa'
