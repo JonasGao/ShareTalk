@@ -6,8 +6,8 @@ define [
   'angular'
   'socket.io'
 ], (angular, io) ->
-  angular.module 'shareTalk.services.socket.chat', []
-  .service '$chat', class
+  angular.module 'shareTalk.services.socket', []
+  .service '$socket', class
     socket: null
     connect: ->
       @socket = io()
