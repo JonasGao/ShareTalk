@@ -11,6 +11,8 @@ define ["angular", 'socket.io', "angular-route", 'services/user'], (angular, io)
       @$user = $users
       @content = ""
       @messages = []
+
+    connect: ->
       @socket = io();
       @socket.on 'posted', (data) -> alert(data.message)
 

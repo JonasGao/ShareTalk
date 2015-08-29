@@ -1,6 +1,6 @@
 gulp = require 'gulp'
+changed = require 'gulp-changed'
 coffee = require 'gulp-coffee'
-coffeeLint = require 'gulp-coffeelint'
 watch = require 'gulp-watch'
 gUtil = require 'gulp-util'
 ngAnnotate = require 'gulp-ng-annotate'
@@ -15,27 +15,17 @@ files =
     ]
     server: 'src/server/**/*.coffee'
 
-gulp.task 'validate-coffee-server', () ->
-  gulp.src files.coffee.server
-  .pipe coffeeLint()
-  .pipe coffeeLint.reporter()
-
-gulp.task 'validate-coffee-client', () ->
-  gulp.src files.coffee.client
-  .pipe coffeeLint()
-  .pipe coffeeLint.reporter()
-
-gulp.task 'coffee-server', ['validate-coffee-server'], () ->
+gulp.task 'coffee-server', () ->
   f = files.coffee.server
   gulp.src f, { base: base }
-  .pipe watch(f, { base: base })
+  .pipe changed(dest)
   .pipe coffee({bare: true}).on('error', gUtil.log)
   .pipe gulp.dest(dest)
 
-gulp.task 'coffee-client', ['validate-coffee-client'], () ->
+gulp.task 'coffee-client', () ->
   f = files.coffee.client
   gulp.src f, { base: base }
-  .pipe watch(f, { base: base } )
+  .pipe changed(dest)
   .pipe coffee({bare: true}).on('error', gUtil.log)
   .pipe ngAnnotate()
   .pipe gulp.dest(dest)
@@ -50,4 +40,4 @@ gulp.task 'copy', () ->
   gulp.src f, { base: base }
   .pipe gulp.dest(dest)
 
-gulp.task 'default', ['copy', 'coffee-client', 'coffee-server']
+gulp.task 'default', ['copy']
