@@ -17,6 +17,8 @@ canSkip = (req) ->
 
 # 授权验证的过滤器
 filter = (req, res, next) ->
+  console.log res.session.sessionID
+
   if canSkip req
     # 如果是 GET 或登陆请求 则不需要验证，
     console.log '已跳过: ' + req.url

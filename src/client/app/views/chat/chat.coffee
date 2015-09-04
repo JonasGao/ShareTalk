@@ -6,12 +6,12 @@ define [
   'angular'
   'angular-route'
   'services/user'
-  'services/socket/chat'
+  'services/socket'
 ], (angular) ->
   angular.module 'shareTalk.views.chat', [
     'ngRoute'
     'shareTalk.services.user'
-    'shareTalk.services.socket.chat'
+    'shareTalk.services.socket'
   ]
   .config ($routeProvider) ->
     $routeProvider.when '/chat',

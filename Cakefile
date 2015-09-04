@@ -9,7 +9,7 @@ build = (options)->
     print data.toString()
 
 task 'watch', 'watch', ->
-  build ['-w', '-c', '-b', '-o', 'dest', 'src']
+  build ['-m', '-c', '-b', '-w', '-o', 'dest', 'src']
 
 task 'build', 'build', ->
-  build ['-c', '-b', '-o', 'dest', 'src']
+  build ['-m', '-c', '-b', '-o', 'dest', 'src']
