@@ -4,6 +4,10 @@ data/
 .idea/
 .settings/
 
+*.sln
+*.njsproj
+*.dat
+
 # User-specific files
 *.suo
 *.user
