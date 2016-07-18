@@ -3,7 +3,6 @@
 ###
 
 socket = require 'socket.io'
-io = null
 
 startup = (server) ->
   io = socket server
@@ -12,7 +11,7 @@ startup = (server) ->
     # socket 为每次新建的连接对象
     console.log '建立了 WebSocket 连接'
     socket.on 'post', (data) ->
-      console.log '前台发回了 post 请求wowowowow'
+      console.log '前台发回了 post 请求'
       # 向前台发送 posted 响应
       socket.emit 'posted', message: 'hello, ' + data
 
