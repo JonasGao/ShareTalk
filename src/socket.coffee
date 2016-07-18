@@ -13,6 +13,6 @@ startup = (server) ->
     socket.on 'post', (data) ->
       console.log '前台发回了 post 请求'
       # 向前台发送 posted 响应
-      socket.emit 'posted', message: 'hello, ' + data
+      io.emit 'posted', message: data.nickname + ' 说: ' + data.message
 
 module.exports = startup

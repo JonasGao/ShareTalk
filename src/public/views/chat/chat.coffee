@@ -27,4 +27,4 @@ define [
     connect: ->
 
     send: ->
-      @$chat.send 'aaaa'
+      .send 'aaaa'
