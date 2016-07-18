@@ -1,5 +1,6 @@
 dest/**/*.js
 dest/**/*.map
+!dest/public/assets/*
 
 node_modules/
 data/
