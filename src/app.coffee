@@ -50,7 +50,6 @@ if (app.get('env') is 'development')
     });
   );
 
-
 # production error handler
 # no stacktraces leaked to user
 app.use((err, req, res) ->

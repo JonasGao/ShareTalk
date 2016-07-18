@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "cake": "coffee -m -c -b -o dest src",
-    "cake-w": "coffee -m -c -b -w -o dest src"
+    "coffee": "coffee -m -c -b -o dest/server src/server",
+    "coffee-w": "coffee -m -c -b -w -o dest/server src/server"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
