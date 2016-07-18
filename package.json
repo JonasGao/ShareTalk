@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "coffee": "coffee -m -c -b -o dest src",
-    "coffee-w": "coffee -m -c -b -w -o dest src"
+    "coffee-w": "coffee -m -c -b -w -o dest src",
+    "dev": "node startup"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
