@@ -2,7 +2,7 @@
   全局授权拦截器
 ###
 
-User = require '../modules/User'
+User = require '../models/User'
 
 # 定义那些需要跳过
 skipUrls = [

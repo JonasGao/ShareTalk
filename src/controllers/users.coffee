@@ -3,7 +3,7 @@
   对 user 进行的数据操作和访问
 ###
 
-User = require '../modules/User'
+User = require '../models/User'
 Q = require 'Q'
 
 router = require 'express'

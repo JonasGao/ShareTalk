@@ -3,7 +3,7 @@
 ###
 
 router = require('express').Router()
-User = require '../modules/User'
+User = require '../models/User'
 
 # 检查用户上传的参数
 valid = (user) ->
