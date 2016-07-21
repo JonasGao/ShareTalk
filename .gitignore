@@ -1,6 +1,7 @@
 dest/**/*.js
 dest/**/*.map
 !dest/public/assets/*
+.DS_Store
 
 node_modules/
 data/
