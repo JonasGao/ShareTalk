@@ -5,9 +5,14 @@
 
 User = require '../models/User'
 Q = require 'Q'
+crypto = require 'crypto'
+express = require 'express'
 
-router = require 'express'
-  .Router()
+md5 = crypto.createHash 'md5'
+
+toMd5 = (text) -> md5.update(text, 'utf-8').digest('hex')
+
+router = express.Router()
 
 mailReg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
 
@@ -59,6 +64,9 @@ router.post '/', (req, res) ->
     if msg
       res.json msg:msg
       return
+
+    doc.password = toMd5 doc.password
+
     newUser = new User(doc)
     newUser.save (err, doc) ->
       res.json doc

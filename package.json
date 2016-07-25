@@ -5,7 +5,7 @@
   "scripts": {
     "coffee": "coffee -m -c -b -o dest src",
     "coffee-w": "coffee -m -c -b -w -o dest src",
-    "dev": "node startup"
+    "dev": "hotnode startup"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "coffee-script": "latest",
+    "hotnode": "latest",
     "gulp": "^3.9.0",
     "gulp-changed": "^1.3.0",
     "gulp-coffee": "^2.3.1",

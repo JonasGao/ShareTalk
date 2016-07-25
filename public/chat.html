@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="assets/socket.io.js"></script>
+    <script src="assets/angular/1.5.7/angular.js"></script>
+</head>
+<body ng-app="gj.talk" ng-controller="IndexController as ctrl">
+<label>
+    昵称: <input type="text" ng-model="ctrl.nickname">
+</label>
+<label>
+    信息: <input type="text" ng-model="ctrl.message">
+</label>
+<button ng-click="ctrl.send()">发送</button>
+<hr>
+<ul>
+    <li ng-repeat="data in ctrl.messageList" ng-bind="data.message"></li>
+</ul>
+<script>
+    angular.module('gj.talk', []).controller('IndexController', (function () {
+
+        function IndexController($scope) {
+            this.socket = io();
+            this.messageList = [];
+            this.socket.on('posted', (data) => {
+                this.messageList.push(data);
+                $scope.$apply();
+            });
+        }
+
+        IndexController.prototype.send = function () {
+            this.socket.emit('post', {
+                nickname: this.nickname,
+                message: this.message
+            });
+        };
+
+        return IndexController;
+
+    }()))
+</script>
+</body>
+</html>

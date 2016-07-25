@@ -2,9 +2,9 @@ app = require './app'
 socket = require './socket'
 debug = require('debug')('ShareTalk:server')
 http = require 'http'
+mongoose = require 'mongoose';
 
-# mongoose = require('mongoose');
-# mongoose.connect("mongodb://localhost/share_talk");
+mongoose.connect("mongodb://localhost/share_talk");
 
 app.set 'port', port = 3000
 

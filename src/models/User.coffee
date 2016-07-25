@@ -1,5 +1,6 @@
 mongoose = require 'mongoose'
-Schema = mongoose.Schema;
+
+Schema = mongoose.Schema
 
 userSchema = new Schema
   id: Number

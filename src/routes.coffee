@@ -3,15 +3,14 @@
 ###
 
 express = require 'express'
+authFilter = require './filters/auth';
+loginController = require './controllers/login.controller';
+usersController = require './controllers/users.controller';
 
 router = express.Router()
 
-authFilter = require('./filters/auth');
-
-login = require('./controllers/login');
-users = require('./controllers/users');
-
 # router.use(authFilter);
-router.use('/users', users);
+router.use '/login', loginController;
+router.use '/users', usersController;
 
 module.exports = router;
