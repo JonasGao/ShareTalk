@@ -1,8 +1,8 @@
 ###
   登录控制器
 ###
-
-router = require('express').Router()
+express = require 'express'
+router = express.Router()
 User = require '../models/User'
 
 # 检查用户上传的参数
@@ -10,7 +10,7 @@ valid = (user) ->
   return false for key in ['mail', 'password'] when not (key of user)
   return true
 
-router.post '/login', (req, res) ->
+router.post '/', (req, res) ->
   console.log '进入登录验证'
   user = req.body
   if not valid user

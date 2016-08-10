@@ -82,6 +82,7 @@ router.delete '/:id', (req, res) ->
 
 # update
 router.put '/', (req, res) ->
+  console.log 'lalala'
   user = req.body;
   if !user or !user.id
     res.json null
