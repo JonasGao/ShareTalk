@@ -3,36 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="assets/css/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/angular/1.5.7/angular.js"></script>
 </head>
 <body ng-app="loginModule" ng-controller="LoginController as ctrl">
-<form novalidate name="loginForm">
-    <label for="mail">Mail</label><input type="email" id="mail" ng-model="ctrl.mail">
-    <label for="pass">Password</label><input type="password" id="pass" ng-model="ctrl.pass">
-</form>
-<br>
-<button ng-click="ctrl.login()">登录</button>
+<div class="container">
+    <div class="loginBox" style="border-top: solid 2px #46b8da;">
+        <div class="row">
+            <div class="form-group text-center">
+                <h2>Sign In</h2>
+            </div>
+        </div>
+        <div class="row">
+            <form novalidate name="ctrl.loginForm">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="mail"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input type="text" class="form-control" placeholder="Email" ng-model="ctrl.mail">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="pass"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" class="form-control" placeholder="Password" ng-model="ctrl.pass">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <button type="submit" class="btn btn-info col-md-12 btn-sm" ng-click="ctrl.login()">Log In</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
-    angular.module('loginModule', []).controller('LoginController', class LoginController {
-        constructor ($http) {
+    angular.module('loginModule', []).controller('LoginController', (function(){
+        function LoginController ($http) {
             this.$http = $http;
         }
-
-        login () {
-
-            if (loginForm.$invalid) {
+        LoginController.prototype.login = function(){
+            if (this.loginForm.$invalid) {
                 alert('请填写正确的内容');
                 return;
             }
-
-            this.$http.post('login', {
-                mail: this.mail,
-                password: this.pass
-            }).then((resp) => {
-                console.log(resp);
-            });
-        }
-    });
+            this.$http.post('/login', { mail: this.mail, password: this.pass })
+                    .then((resp) => { console.log(resp); });
+        };
+        return LoginController;
+    })());
 </script>
 </body>
 </html>
