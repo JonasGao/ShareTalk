@@ -6,7 +6,7 @@ mongoose = require 'mongoose';
 
 mongoose.connect("mongodb://localhost/share_talk");
 
-app.set 'port', port = 3030
+app.set 'port', port = 3000
 
 # 基于 express 创建服务实例
 server = http.createServer app
