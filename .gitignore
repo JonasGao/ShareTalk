@@ -1,7 +1,9 @@
-dest/**/*.js
-dest/**/*.map
-!dest/public/assets/*
+# User Custom
+
+server/dist
 .DS_Store
+
+# User Custom End
 
 node_modules/
 data/

@@ -1,1 +1,1 @@
-require('./dest/bootstrap');
+require('./server/dist/bootstrap');
