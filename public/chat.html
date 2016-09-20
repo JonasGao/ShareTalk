@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.css">
+    <script src="assets/socket.io.js"></script>
+    <script src="assets/angular/1.5.7/angular.js"></script>
+</head>
+<body ng-app="gj.talk" ng-controller="IndexController as ctrl">
+<label>
+    昵称: <input type="text" ng-model="ctrl.nickname">
+</label>
+<label>
+    信息: <input type="text" ng-model="ctrl.message">
+</label>
+
+<ul>
+    <li ng-repeat="data in ctrl.messageList" ng-bind="data.message"></li>
+</ul>
+<div class="col-sm-8 col-sm-offset-2">
+    <div class="portlet-body" id="chats" style="display: block;">
+        <div class="slimScrollDiv">
+            <div class="scroller">
+                <ul class="chats">
+                    <li class="in">
+                        <img class="avatar" alt="" src="media/image/avatar1.jpg">
+                        <div class="message">
+                            <span class="arrow"></span>
+                            <a href="#" class="name">Bob Nilson</a>
+                            <span class="datetime">at Jul 25, 2012 11:09</span>
+                                <span class="body">
+                                Lorem ipsum dolor sit amet.
+                                </span>
+                        </div>
+                    </li>
+                    <li class="out">
+                        <img class="avatar" alt="" src="media/image/avatar2.jpg">
+                        <div class="message">
+                            <span class="arrow"></span>
+                            <a href="#" class="name">Lisa Wong</a>
+                            <span class="datetime">at Jul 25, 2012 11:09</span>
+                                <span class="body">
+                                Lorem ipsum dolor sit amet.
+                                </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="chat-form">
+            <div class="input-cont">
+                <textarea class="col-sm-12" type="text" placeholder="Type a message here..." ng-model="ctrl.message"></textarea>
+            </div>
+            <div class="btn-cont">
+                <span class="arrow"></span>
+                <a href="" class="btn blue icn-only"  ng-click="ctrl.send()"><i class="icon-ok icon-white"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    angular.module('gj.talk', []).controller('IndexController', (function () {
+
+        function IndexController($scope) {
+            this.socket = io();
+            this.messageList = [];
+            this.socket.on('posted', (data) => {
+                this.messageList.push(data);
+                $scope.$apply();
+            });
+        }
+
+        IndexController.prototype.send = function () {
+            this.socket.emit('post', {
+                nickname: this.nickname,
+                message: this.message
+            });
+        };
+
+        return IndexController;
+
+    }()))
+</script>
+</body>
+</html>
