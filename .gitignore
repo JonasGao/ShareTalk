@@ -1,6 +1,13 @@
-dest/
+# User Custom
+
+server/dist
+.DS_Store
+
+# User Custom End
+
 node_modules/
 data/
+
 .idea/
 .settings/
 
