@@ -13,9 +13,9 @@
     <div class="col-sm-8 col-sm-offset-2">
         <div class="form-group">
             <h2>用户管理中心</h2>
-            <button title="Add" class="btn btn-success btn-xs" ng-click="ctrl.add()"><i class="glyphicon glyphicon-plus"></i>新增用户</button>
-            <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.save()"><i class="glyphicon glyphicon-floppy-saved"></i>保存当前新用户</button>
-            <button title="Search" class="btn btn-info btn-xs" ><i class="glyphicon glyphicon-search"></i>搜索用户</button>
+            <button title="Add" class="btn btn-success btn-xs" ng-click="ctrl.add()"><i class="fa fa-plus"></i>新增用户</button>
+            <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.save()"><i class="fa fa-floppy-saved"></i>保存当前新用户</button>
+            <button title="Search" class="btn btn-info btn-xs" ><i class="fa fa-search"></i>搜索用户</button>
         </div>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="ID" ng-model="ctrl.id">
@@ -63,9 +63,9 @@
                         <span ng-if="!ctrl.show" ng-bind="list.username"></span>
                     </td>
                     <td class="text-left">
-                        <button title="Edit" class="btn btn-success btn-xs" ng-click="ctrl.edit()"><i class="glyphicon glyphicon-pencil"></i></button>
-                        <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.saveEdited(list)"><i class="glyphicon glyphicon-floppy-saved"></i></button>
-                        <button title="Delete" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></button>
+                        <button title="Edit" class="btn btn-success btn-xs" ng-click="ctrl.edit()"><i class="fa fa-pencil"></i></button>
+                        <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.saveEdited(list)"><i class="fa fa-floppy-saved"></i></button>
+                        <button title="Delete" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
                 </tbody>
