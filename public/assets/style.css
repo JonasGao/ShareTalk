@@ -5,6 +5,11 @@
     margin: 100px auto;
     background: #fff;
 }
+
+.loginBox .input-group-addon {
+  width: 42px;
+}
+
 .portlet-body {
     clear: both;
     padding: 16px 16px;
