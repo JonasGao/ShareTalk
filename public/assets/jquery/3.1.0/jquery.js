@@ -8996,7 +8996,7 @@ jQuery.extend( {
 
 			try {
 				completed = false;
-				IndexController.send( requestHeaders, done );
+				transport.send( requestHeaders, done );
 			} catch ( e ) {
 
 				// Rethrow post-completion exceptions
@@ -9389,7 +9389,7 @@ jQuery.ajaxTransport( function( options ) {
 				try {
 
 					// Do send the request (this may raise an exception)
-					IndexController.send( options.hasContent && options.data || null );
+					xhr.send( options.hasContent && options.data || null );
 				} catch ( e ) {
 
 					// #14683: Only rethrow if this hasn't been notified as an error yet
