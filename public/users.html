@@ -52,27 +52,27 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="list in ctrl.userList">
+            <tr ng-repeat="user in ctrl.userList">
                 <td class="text-left">
-                    <input ng-if="ctrl.show" type="text" ng-model="list.mail">
-                    <span ng-if="!ctrl.show" ng-bind="list.mail"></span>
+                    <input ng-if="ctrl.show" type="text" ng-model="user.mail">
+                    <span ng-if="!ctrl.show" ng-bind="user.mail"></span>
                 </td>
                 <td class="text-left">
-                    <input ng-if="ctrl.show" type="text" ng-model="list.password">
-                    <span ng-if="!ctrl.show" ng-bind="list.password"></span>
+                    <input ng-if="ctrl.show" type="text" ng-model="user.password">
+                    <span ng-if="!ctrl.show" ng-bind="user.password"></span>
                 </td>
                 <td class="text-left">
-                    <input ng-if="ctrl.show" type="text" ng-model="list.username">
-                    <span ng-if="!ctrl.show" ng-bind="list.username"></span>
+                    <input ng-if="ctrl.show" type="text" ng-model="user.username">
+                    <span ng-if="!ctrl.show" ng-bind="user.username"></span>
                 </td>
                 <td class="text-left">
                     <button title="Edit" class="btn btn-success btn-xs" ng-click="ctrl.edit()">
                         <i class="fa fa-pencil"></i>
                     </button>
-                    <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.saveEdited(list)">
+                    <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.saveEdited(user)">
                         <i class="fa fa-floppy-o"></i>
                     </button>
-                    <button title="Delete" class="btn btn-danger btn-xs">
+                    <button title="Delete" class="btn btn-danger btn-xs" ng-click="ctrl.remove(user)">
                         <i class="fa fa-trash"></i>
                     </button>
                 </td>
@@ -113,6 +113,10 @@
                 this.showUserDetail = false;
                 this.init();
             });
+        }
+
+        remove(user) {
+            this.$http.delete('/users/' + user._id).then(() => this.init());
         }
 
         edit() {
