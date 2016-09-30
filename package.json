@@ -1,10 +1,9 @@
 {
   "name": "ShareTalk",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build-server": "coffee -m -c -b -o server/dist server/src",
-    "start": "nodemon --delay 500ms server/src/bootstrap.coffee"
+    "build-server": "coffee -m -c -w -b -o server/dist server/src"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -20,7 +19,6 @@
     "socket.io": "^1.3.6"
   },
   "devDependencies": {
-    "coffee-script": "latest",
-    "nodemon": "^1.10.2"
+    "coffee-script": "latest"
   }
 }

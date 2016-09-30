@@ -10,102 +10,122 @@
 </head>
 <body ng-app="usersModule" ng-controller="UsersController as ctrl" ng-init="ctrl.init()">
 <div class="container">
-    <div class="col-sm-8 col-sm-offset-2">
-        <div class="form-group">
-            <h2>用户管理中心</h2>
-            <button title="Add" class="btn btn-success btn-xs" ng-click="ctrl.add()"><i class="fa fa-plus"></i>新增用户</button>
-            <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.save()"><i class="fa fa-floppy-saved"></i>保存当前新用户</button>
-            <button title="Search" class="btn btn-info btn-xs" ><i class="fa fa-search"></i>搜索用户</button>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="ID" ng-model="ctrl.id">
-        </div>
-        <div class="form-group">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Email" ng-model="ctrl.mail">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" ng-model="ctrl.pass">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Username" ng-model="ctrl.name">
-            </div>
-            <div class="form-group">
-                {{ctrl.error}}
-            </div>
-        </div>
+    <header>
+        <h1>用户管理中心</h1>
+    </header>
+    <div class="card card-block">
+        <button title="Add" class="btn btn-success btn-xs" ng-click="ctrl.add()">
+            <i class="fa fa-plus"></i>&nbsp;新增用户
+        </button>
+        <button title="Search" class="btn btn-info btn-xs">
+            <i class="fa fa-search"></i>&nbsp;搜索用户
+        </button>
     </div>
-    <div class="col-sm-12">
-        <div class="table-responsive">
-            <table class="table table-hover-new vo_table tableWordBreak dropdown_table_main">
-                <thead>
-                <tr>
-                    <th class="text-center mfb-xt3">id</th>
-                    <th class="text-left mfb-xt">mail</th>
-                    <th class="text-left mfb-x">password</th>
-                    <th class="text-left mfb-x">username</th>
-                    <th class="text-left mfb-x">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="list in ctrl.userList">
-                    <td class="text-center">{{list._id}}</td>
-                    <td class="text-left">
-                        <input ng-if="ctrl.show" type="text" ng-model="list.mail">
-                        <span ng-if="!ctrl.show" ng-bind="list.mail"></span>
-                    </td>
-                    <td class="text-left">
-                        <input ng-if="ctrl.show" type="text" ng-model="list.password">
-                        <span ng-if="!ctrl.show" ng-bind="list.password"></span>
-                    </td>
-                    <td class="text-left">
-                        <input ng-if="ctrl.show" type="text" ng-model="list.username">
-                        <span ng-if="!ctrl.show" ng-bind="list.username"></span>
-                    </td>
-                    <td class="text-left">
-                        <button title="Edit" class="btn btn-success btn-xs" ng-click="ctrl.edit()"><i class="fa fa-pencil"></i></button>
-                        <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.saveEdited(list)"><i class="fa fa-floppy-saved"></i></button>
-                        <button title="Delete" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+
+    <div class="card card-block" ng-if="ctrl.showUserDetail">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Email" ng-model="ctrl.mail">
         </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" ng-model="ctrl.pass">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" ng-model="ctrl.name">
+        </div>
+        <hr>
+        <div class="alert alert-warning" ng-if="ctrl.error">
+            <i class="fa fa-warning"></i>
+            <output>{{ctrl.error}}</output>
+        </div>
+        <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.save()">
+            <i class="fa fa-floppy-o"></i>&nbsp;保存当前新用户
+        </button>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-default">
+            <tr>
+                <th class="text-left mfb-xt">mail</th>
+                <th class="text-left mfb-x">password</th>
+                <th class="text-left mfb-x">username</th>
+                <th class="text-left mfb-x">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="list in ctrl.userList">
+                <td class="text-left">
+                    <input ng-if="ctrl.show" type="text" ng-model="list.mail">
+                    <span ng-if="!ctrl.show" ng-bind="list.mail"></span>
+                </td>
+                <td class="text-left">
+                    <input ng-if="ctrl.show" type="text" ng-model="list.password">
+                    <span ng-if="!ctrl.show" ng-bind="list.password"></span>
+                </td>
+                <td class="text-left">
+                    <input ng-if="ctrl.show" type="text" ng-model="list.username">
+                    <span ng-if="!ctrl.show" ng-bind="list.username"></span>
+                </td>
+                <td class="text-left">
+                    <button title="Edit" class="btn btn-success btn-xs" ng-click="ctrl.edit()">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.saveEdited(list)">
+                        <i class="fa fa-floppy-o"></i>
+                    </button>
+                    <button title="Delete" class="btn btn-danger btn-xs">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 <script>
-    angular.module('usersModule', []).controller('UsersController', (function() {
-        function UsersController($http) {
+    angular.module('usersModule', []).controller('UsersController', class UsersController {
+        constructor($http) {
             this.$http = $http;
             this.error = '';
             this.userList = [];
             this.show = false;
+            this.showUserDetail = false;
         }
-        UsersController.prototype={
-            init:function(){
-                this.$http.get('/users/')
-                        .then((resp) => { this.userList = resp.data;});
-            },
-            save:function(){
-                this.$http.post('/users/',{ mail: this.mail, password: this.pass, username: this.name})
-                        .then((resp) => { this.error=resp.data.msg;});
-            },
-//            search:function () {
-//                this.$http.get('/users/:id',{ id: this.id})
-//                        .then((ww) => { console.log(ww); });
-//            },
-            edit:function(){
-                this.show = true;
-            },
-            saveEdited:function(list){
-                this.show = false;
-                this.$http.put('/users/',{ mail: list.mail, password: list.password, username: list.username})
-                        .then(function (list) {
-                        });
-            }
-        };
-        return UsersController;
-    })());
+
+        init() {
+            this.$http.get('/users/').then((resp) => {
+                this.userList = resp.data;
+            });
+        }
+
+        add() {
+            this.showUserDetail = true;
+        }
+
+        save() {
+            this.$http.post('/users/', {
+                mail: this.mail,
+                password: this.pass,
+                username: this.name
+            }).then(resp => {
+                if (this.error = resp.data.msg) {
+                    return;
+                }
+                this.showUserDetail = false;
+                this.init();
+            });
+        }
+
+        edit() {
+            this.show = true;
+        }
+
+        saveEdited(list) {
+            this.show = false;
+            this.$http.put('/users/', {mail: list.mail, password: list.password, username: list.username})
+                    .then(function (list) {
+                    });
+        }
+    });
 </script>
 </body>
 </html>

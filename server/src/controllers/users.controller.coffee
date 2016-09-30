@@ -51,7 +51,7 @@ router.get '/', (req, res) ->
 router.get '/:id', (req, res) ->
   id = req.params.id
 
-  User.find id:id, (err, doc) ->
+  User.find _id:id, (err, doc) ->
     res.json err || doc
 
 
@@ -59,8 +59,7 @@ router.get '/:id', (req, res) ->
 router.post '/', (req, res) ->
   if !req.body then res.json null
   doc = req.body
-  checkUser doc
-  .then (msg) ->
+  checkUser(doc).then (msg) ->
     if msg
       res.json msg:msg
       return
@@ -76,7 +75,7 @@ router.post '/', (req, res) ->
 router.delete '/:id', (req, res) ->
   if !req.params.id
     return
-  User.remove id: req.params.id, (err) ->
+  User.remove _id: req.params.id, (err) ->
     res.json err
 
 
