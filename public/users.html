@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/style.css">
     <script src="assets/angular/1.5.7/angular.js"></script>
 </head>
-<body ng-app="usersModule" ng-controller="UsersController as ctrl" ng-init="ctrl.init()">
+<body ng-app="usersModule" ng-controller="UsersController as ctrl">
 <div class="container">
     <header>
         <h1>用户管理</h1>
@@ -25,28 +25,39 @@
             <tr>
                 <th>mail</th>
                 <th>username</th>
-                <th>Action</th>
+                <th style="width: 200px;">Action</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="user in ctrl.userList">
-                <td>
-                    <input ng-if="ctrl.show" type="text" ng-model="user.mail">
-                    <span ng-if="!ctrl.show" ng-bind="user.mail"></span>
+                <!--查看状态-->
+                <td ng-if="!user.show">
+                    <span ng-bind="user.mail"></span>
                 </td>
-                <td>
-                    <input ng-if="ctrl.show" type="text" ng-model="user.username">
-                    <span ng-if="!ctrl.show" ng-bind="user.username"></span>
+                <td ng-if="!user.show">
+                    <span ng-bind="user.username"></span>
                 </td>
-                <td>
-                    <button title="Edit" class="btn btn-success btn-xs" ng-click="ctrl.edit()">
+                <td ng-if="!user.show">
+                    <button title="Edit" class="btn btn-success" ng-click="ctrl.edit(user)">
                         <i class="fa fa-pencil"></i>
                     </button>
-                    <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.saveEdited(user)">
+                    <button title="Delete" class="btn btn-danger" ng-click="ctrl.remove(user)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+                <!--编辑状态-->
+                <td ng-if="user.show">
+                    <input class="form-control" type="text" ng-model="user.mail">
+                </td>
+                <td ng-if="user.show">
+                    <input class="form-control" type="text" ng-model="user.username">
+                </td>
+                <td ng-if="user.show">
+                    <button title="Save" class="btn btn-success" ng-click="ctrl.saveEdited(user)">
                         <i class="fa fa-floppy-o"></i>
                     </button>
-                    <button title="Delete" class="btn btn-danger btn-xs" ng-click="ctrl.remove(user)">
-                        <i class="fa fa-trash"></i>
+                    <button title="Cancel" class="btn btn-warning" ng-click="ctrl.cancel(user)">
+                        <i class="fa fa-ban"></i>
                     </button>
                 </td>
             </tr>
@@ -79,7 +90,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.save()">
+                    <button title="Save" class="btn btn-info" ng-click="ctrl.save()">
                         <i class="fa fa-floppy-o"></i>&nbsp;保存当前新用户
                     </button>
                 </div>
@@ -94,11 +105,12 @@
             this.$http = $http;
             this.error = '';
             this.userList = [];
-            this.show = false;
             this.showUserDetail = false;
+
+            this.loadUsers();
         }
 
-        init() {
+        loadUsers() {
             this.$http.get('/users/').then((resp) => {
                 this.userList = resp.data;
             });
@@ -118,23 +130,31 @@
                     return;
                 }
                 this.showUserDetail = false;
-                this.init();
+                this.loadUsers();
             });
         }
 
         remove(user) {
-            this.$http.delete('/users/' + user._id).then(() => this.init());
+            this.$http.delete('/users/' + user._id).then(() => this.loadUsers());
         }
 
-        edit() {
-            this.show = true;
+        edit(user) {
+            this.editingUser = angular.copy(user);
+            user.show = true;
         }
 
-        saveEdited(list) {
-            this.show = false;
-            this.$http.put('/users/', {mail: list.mail, password: list.password, username: list.username})
-                    .then(function (list) {
-                    });
+        saveEdited(user) {
+            user.show = false;
+            this.$http.put('/users/', {
+                _id: user._id,
+                mail: user.mail,
+                username: user.username
+            }).then(() => this.loadUsers());
+        }
+
+        cancel(user) {
+            angular.merge(user, this.editingUser);
+            user.show = false;
         }
     });
 </script>

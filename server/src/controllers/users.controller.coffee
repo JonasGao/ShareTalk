@@ -78,12 +78,13 @@ router.delete '/:id', (req, res) ->
 
 # update
 router.put '/', (req, res) ->
-  console.log 'lalala'
   user = req.body;
-  if !user or !user.id
-    res.json null
+
+  if !user or !user._id
+    res.json '参数不正确'
     return
-  User.find id: user.id, (err, docs) ->
+
+  User.find _id: user._id, (err, docs) ->
     if docs.length
       doc = docs[0]
       if user.mail then doc.mail = user.mail

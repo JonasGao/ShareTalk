@@ -32,24 +32,27 @@
     </div>
 </div>
 <script>
-    angular.module('loginModule', []).controller('LoginController', (function(){
-        function LoginController ($http) {
+    angular.module('loginModule', []).controller('LoginController', class LoginController {
+        constructor($http) {
             this.$http = $http;
         }
-        LoginController.prototype.login = function(){
+
+        login() {
             if (this.loginForm.$invalid) {
                 alert('请填写正确的内容');
                 return;
             }
-            this.$http.post('/login', { mail: this.mail, password: this.pass }).then((resp) => {
+            this.$http.post('/login', {
+                mail: this.mail,
+                password: this.pass
+            }).then((resp) => {
                 if (typeof resp.data === 'string')
                     this.message = resp.data;
                 else
                     location.href = '/users.html';
             });
-        };
-        return LoginController;
-    })());
+        }
+    });
 </script>
 </body>
 </html>
