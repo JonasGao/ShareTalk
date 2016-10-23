@@ -11,61 +11,34 @@
 <body ng-app="usersModule" ng-controller="UsersController as ctrl" ng-init="ctrl.init()">
 <div class="container">
     <header>
-        <h1>用户管理中心</h1>
+        <h1>用户管理</h1>
     </header>
-    <div class="card card-block">
-        <button title="Add" class="btn btn-success btn-xs" ng-click="ctrl.add()">
+    <hr>
+    <nav class="btn-toolbar m-b-1">
+        <button title="Add" class="btn btn-success" ng-click="ctrl.add()">
             <i class="fa fa-plus"></i>&nbsp;新增用户
         </button>
-        <button title="Search" class="btn btn-info btn-xs">
-            <i class="fa fa-search"></i>&nbsp;搜索用户
-        </button>
-    </div>
-
-    <div class="card card-block" ng-if="ctrl.showUserDetail">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Email" ng-model="ctrl.mail">
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" ng-model="ctrl.pass">
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" ng-model="ctrl.name">
-        </div>
-        <hr>
-        <div class="alert alert-warning" ng-if="ctrl.error">
-            <i class="fa fa-warning"></i>
-            <output>{{ctrl.error}}</output>
-        </div>
-        <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.save()">
-            <i class="fa fa-floppy-o"></i>&nbsp;保存当前新用户
-        </button>
-    </div>
+    </nav>
     <div class="table-responsive">
         <table class="table">
             <thead class="thead-default">
             <tr>
-                <th class="text-left mfb-xt">mail</th>
-                <th class="text-left mfb-x">password</th>
-                <th class="text-left mfb-x">username</th>
-                <th class="text-left mfb-x">Action</th>
+                <th>mail</th>
+                <th>username</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="user in ctrl.userList">
-                <td class="text-left">
+                <td>
                     <input ng-if="ctrl.show" type="text" ng-model="user.mail">
                     <span ng-if="!ctrl.show" ng-bind="user.mail"></span>
                 </td>
-                <td class="text-left">
-                    <input ng-if="ctrl.show" type="text" ng-model="user.password">
-                    <span ng-if="!ctrl.show" ng-bind="user.password"></span>
-                </td>
-                <td class="text-left">
+                <td>
                     <input ng-if="ctrl.show" type="text" ng-model="user.username">
                     <span ng-if="!ctrl.show" ng-bind="user.username"></span>
                 </td>
-                <td class="text-left">
+                <td>
                     <button title="Edit" class="btn btn-success btn-xs" ng-click="ctrl.edit()">
                         <i class="fa fa-pencil"></i>
                     </button>
@@ -80,6 +53,40 @@
             </tbody>
         </table>
     </div>
+    <div class="modal fade in" style="display: block" ng-if="ctrl.showUserDetail">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="ctrl.showUserDetail = false">
+                        <span>×</span>
+                    </button>
+                    <h4 class="modal-title">编辑用户</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email" ng-model="ctrl.mail">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" ng-model="ctrl.pass">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Username" ng-model="ctrl.name">
+                    </div>
+                    <hr>
+                    <div class="alert alert-warning" ng-if="ctrl.error">
+                        <i class="fa fa-warning"></i>
+                        <output>{{ctrl.error}}</output>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button title="Save" class="btn btn-info btn-xs" ng-click="ctrl.save()">
+                        <i class="fa fa-floppy-o"></i>&nbsp;保存当前新用户
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade in" ng-if="ctrl.showUserDetail"></div>
 </div>
 <script>
     angular.module('usersModule', []).controller('UsersController', class UsersController {

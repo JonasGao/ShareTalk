@@ -5,13 +5,10 @@
 
 User = require '../models/User'
 Q = require 'Q'
-crypto = require 'crypto'
 express = require 'express'
+md5Utils = require '../utils/md5'
 
-md5 = crypto.createHash 'md5'
-
-toMd5 = (text) -> md5.update(text, 'utf-8').digest('hex')
-
+toMd5 = md5Utils.toMd5;
 router = express.Router()
 
 mailReg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/

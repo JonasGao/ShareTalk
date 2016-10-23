@@ -2,8 +2,10 @@
   登录控制器
 ###
 express = require 'express'
-router = express.Router()
 User = require '../models/User'
+md5Util = require '../utils/md5'
+
+router = express.Router()
 
 # 检查用户上传的参数
 valid = (user) ->
@@ -11,19 +13,21 @@ valid = (user) ->
   return true
 
 router.post '/', (req, res) ->
-  console.log '进入登录验证'
+
   user = req.body
+
   if not valid user
-    console.log '非法字段'
-    res.json null
+    res.json '无效的参数'
     return
+
+  user.password = md5Util.toMd5 user.password
+
   User.find user, (err, docs) ->
     result = null
     if err
       result = err
     else if docs.length
       result = req.session.user = docs[0]
-    console.log '登录验证：' + JSON.stringify result
-    res.json result
+    res.json result or '账户名或密码错误'
 
 module.exports = router
