@@ -119,7 +119,7 @@
     overflow: hidden;
 }
 .chat-form .input-cont {
-    margin-right: 55px;
+    margin-right: 90px;
 }
 .chat-form .input-cont input {
     border: 1px solid #ddd;
@@ -133,12 +133,12 @@
 .chat-form .btn-cont {
     position: relative;
     float: right;
-    width: 44px;
+    width: 66px;
 }
 .chat-form .btn-cont .arrow {
     position: absolute;
     top: 17px;
-    right: 43px;
+    right: 66px;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
     border-right: 8px solid #4d90fe;

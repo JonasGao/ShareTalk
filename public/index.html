@@ -46,10 +46,12 @@
                 mail: this.mail,
                 password: this.pass
             }).then((resp) => {
-                if (typeof resp.data === 'string')
+                if (typeof resp.data === 'string') {
                     this.message = resp.data;
-                else
+                } else {
+                    sessionStorage.setItem('currentUser', angular.toJson(resp.data));
                     location.href = '/users.html';
+                }
             });
         }
     });
